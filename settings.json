@@ -1,0 +1,38 @@
+{
+  "env": {
+    "CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS": "1",
+    "CLAUDE_CODE_SUPPRESS_SESSION_ATTRIBUTION": "1",
+    "CLAUDE_AFK_TIMEOUT_MS": "2147483647"
+  },
+  "attribution": {
+    "commit": "",
+    "pr": "",
+    "sessionUrl": false
+  },
+  "model": "opus[1m]",
+  "worktree": {
+    "baseRef": "fresh"
+  },
+  "enabledPlugins": {
+    "ruby-lsp@claude-plugins-official": true,
+    "gopls-lsp@claude-plugins-official": false,
+    "swift-lsp@claude-plugins-official": false,
+    "warp@claude-code-warp": true
+  },
+  "extraKnownMarketplaces": {
+    "claude-code-warp": {
+      "source": {
+        "source": "github",
+        "repo": "warpdotdev/claude-code-warp"
+      }
+    }
+  },
+  "effortLevel": "high",
+  "tui": "fullscreen",
+  "theme": "dark",
+  "showTurnDuration": true,
+  "teammateMode": "in-process",
+  "remoteControlAtStartup": true,
+  "inputNeededNotifEnabled": true,
+  "agentPushNotifEnabled": true
+}

@@ -1,0 +1,43 @@
+# Local state from ~/.claude that must never be committed to a public repo.
+# Listed explicitly so a careless `cp -R ~/.claude/. .` cannot leak it.
+
+# Conversation and command history
+history.jsonl
+sessions/
+projects/
+file-history/
+paste-cache/
+shell-snapshots/
+session-env/
+
+# Per-project memory: personal and work notes
+**/memory/
+
+# Machine state, caches, credentials
+settings.local.json
+.credentials.json
+policy-limits.json
+remote-settings.json
+statsig/
+cache/
+plugins/cache/
+plugins/marketplaces/
+plugins/installed_plugins.json
+plugins/*-cache.json
+stats-cache.json
+gh-pr-status-cache.json
+.last-cleanup
+.last-update-result.json
+
+# Runtime
+daemon/
+ide/
+jobs/
+tasks/
+teams/
+plans/
+todos/
+downloads/
+
+# macOS
+.DS_Store
