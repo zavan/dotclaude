@@ -15,6 +15,7 @@ skills/            → ~/.claude/skills/
 git clone git@github.com:zavan/dotclaude.git ~/projects/dotclaude
 ln -s ~/projects/dotclaude/settings.json ~/.claude/settings.json
 ln -s ~/projects/dotclaude/skills/asd ~/.claude/skills/asd
+ln -s ~/projects/dotclaude/skills/stacked-pr ~/.claude/skills/stacked-pr
 ```
 
 Symlink each skill individually rather than the whole `skills/` directory, so skills installed by
@@ -38,6 +39,25 @@ The approved ~900-word dictionary ships with the ASD-STE100 specification and is
 here. The skill works from the rule sections plus a table of high-frequency substitutions, and
 flags uncertainty instead of claiming compliance. Good STE-style prose; a formally controlled
 deliverable still needs the real dictionary.
+
+### `/stacked-pr` — stacked pull requests with `gh stack`
+
+Drives GitHub's stacked PR workflow from an agent: a chain of PRs where each targets the branch
+below it, so reviewers get one focused diff per layer instead of one large one.
+
+The judgment it encodes, beyond the command list:
+
+- **Design the layers before writing code.** Each layer must be coherent, dependency-ordered,
+  reviewable alone, and *green* alone — CI runs per PR, so tests belong in the layer they cover.
+- **Fix bugs in the layer that owns them**, then `gh stack rebase --upstack` to cascade, and
+  re-verify — a clean rebase is not a working one.
+- **Don't launch the interactive commands.** `gh stack modify` and `gh stack switch` are TUIs; an
+  agent hands the user the keystrokes instead. Same for raw `git rebase`/`git push --force` on a
+  stack branch, which desyncs the extension's tracking state.
+- **Ask before `gh stack submit`** — that is the step that notifies reviewers.
+
+Exit codes 0–10 are documented for deterministic branching. `references/commands.md` carries the
+full command, flag, and limits table.
 
 ## Plugins
 
